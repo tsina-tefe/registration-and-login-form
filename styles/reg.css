@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+.container{
+    width: 400px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto 0px;
+    padding: 20px;
+    border-radius: 9px;
+}
+h2{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+}
+.header p{
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 0;
+}
+.header{
+    margin-bottom: 20px;
+}
+form button{
+    height: 50px;
+    border-radius: 20px !important;
+    font-weight: bold !important;
+}
+.footer{
+    margin-top: 10px;
+    text-align: center;
+}
+.footer p{
+    opacity: 0.8;
+}
+.footer a{
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+.footer a:hover{
+    text-decoration: underline;
+}
+.input-group{
+    position: relative;
+    margin-bottom: 80px;
+}
+.input-group input{
+    position: absolute !important;
+    width: 90% !important;
+}
+.input-group button{
+    position: absolute !important;
+    right: 0px;
+    border: none !important;
+    top: 4px;
+}
+.form-control{
+    border-radius: 20px !important;
+}
+.error{
+    color: red;
+    font-size: 14px;
+    margin-top: -15px;
+    opacity: 0;
+}
+.show{
+    opacity: 100%;
+}

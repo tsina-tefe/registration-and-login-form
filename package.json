@@ -1,0 +1,18 @@
+{
+  "name": "regform",
+  "version": "1.0.0",
+  "description": "Registration and login form ",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tsinukal Tefera",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql": "^2.18.1"
+  }
+}
