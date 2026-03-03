@@ -2,6 +2,7 @@
     const togglePasswordReEntery = document.getElementById("togglePasswordReEntery");
     const password = document.getElementById("password");
     const form = document.getElementById('loginForm');
+    const footer = document.querySelector('.footer');
     
     togglePassword.addEventListener("click", function () {
         const isPassword = password.type === "password";
@@ -21,14 +22,33 @@
     });
 
     async function login(userCredentials) {
-        const res = await fetch('http://localhost:3000/login', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userCredentials)
-        });
+        try {
+            const res = await fetch('http://localhost:3000/login', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userCredentials)
+            });
 
-        const data = await res.json();
-        console.log(data);
+            const data = await res.json();
+            
+            if(res.status !== 200) {
+                throw new Error(data.message);
+            }
+            if(!res.ok) throw new Error("Something went wrong, please try again later");
+
+            if(res.status === 200) {
+                window.location.href = '/index.html';
+            }
+        } catch(err) {
+            const errMessage = document.createElement('p');
+            errMessage.textContent = err.message;
+            errMessage.style.color = "red";
+            footer.appendChild(errMessage);
+
+            setTimeout(() => {
+                errMessage.remove();
+            }, 3000);
+        }
     }

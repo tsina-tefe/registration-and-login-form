@@ -62,7 +62,7 @@ async function register(userDetails) {
 
         const data = await res.json();
 
-        if(res.status > 401) throw new Error("Something went wrong, try again later");
+        if(res.status > 401 || !res.ok) throw new Error("Something went wrong, try again later");
 
         else if(res.status === 400) throw new Error(data.message)
 
