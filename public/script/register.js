@@ -52,7 +52,7 @@ form.addEventListener('submit', (e) => {
 
 async function register(userDetails) {
     try {
-        const res = await fetch('http://localhost:3000/reg', {
+        const res = await fetch('http://localhost:3000/register', {
             method: "POST",
             headers: {
                 "content-Type": "application/json"
@@ -67,16 +67,8 @@ async function register(userDetails) {
         else if(res.status === 400) throw new Error(data.message)
 
         else if(res.status === 201) {
-            // const successMessage = document.createElement('p');
-            // successMessage.textContent = data;
-            // successMessage.style.color = "green";
-            // footer.appendChild(successMessage);
-
-            // setTimeout(() => {
-            //     successMessage.remove();
-            // }, 3000);
             window.alert("Account created successfully");
-            window.location.href = "/login.html";
+            window.location.href = "../login.html";
         }
     } catch(err) {
         const errMessage = document.createElement('p');
@@ -87,5 +79,5 @@ async function register(userDetails) {
         setTimeout(() => {
             errMessage.remove();
         }, 3000);
-}
+    }
 }

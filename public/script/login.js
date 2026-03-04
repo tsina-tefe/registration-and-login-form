@@ -39,7 +39,7 @@
             if(!res.ok) throw new Error("Something went wrong, please try again later");
 
             if(res.status === 200) {
-                window.location.href = '/index.html';
+                window.location.href = '../index.html';
             }
         } catch(err) {
             const errMessage = document.createElement('p');

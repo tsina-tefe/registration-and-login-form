@@ -1,17 +1,11 @@
 require("dotenv").config({ path: "../.env"});
 const express = require('express');
-const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const path = require('path');
+const db = require("./db");
 const PORT = process.env.PORT;
 const app = express();
-
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
 
 // db.connect((err) => {
 //     if(err) {
@@ -30,33 +24,9 @@ const db = mysql.createConnection({
 //     });
 // });
 
-db.connect((err) => {
-    if(err) {
-        console.log("connection error: ", err);
-        process.exit(1);
-    }
-    console.log("Conneted successfully");
-
-    const createTable = 
-    `
-        CREATE TABLE IF NOT EXISTS wabiOne (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
-        email VARCHAR(50) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL)
-    `;
-
-    db.query(createTable, (err) => {
-        if(err) {
-            console.log("Couldn't create table: ", err);
-            return res.status(500).json({message: "Something went wrong, try again later"});
-        }
-        console.log('Created table');
-    })
-});
-
 app.use(cors());
 app.use(express.json());
+app.use(express.static('../public'));
 
 app.use((req, res, next) => {
     console.log("Request recieved");
@@ -67,8 +37,16 @@ app.get('/', (req, res) => {
     res.status(200).send("Welcome to Wabians Family");
 });
 
+app.get('/register', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../public', 'register.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../public', 'login.html'));
+});
+
 //register new user
-app.post('/reg', async (req, res) => {
+app.post('/register', async (req, res) => {
     const {name, email, password} = req.body;
     const cryptedpass = await bcrypt.hash(password, 8);
     console.log('post request');
