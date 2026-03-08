@@ -7,25 +7,6 @@ const db = require("./db");
 const PORT = process.env.PORT;
 const app = express();
 
-//Create database
-/*
-db.connect((err) => {
-    if(err) {
-        console.log("Connection Error: ", err);
-        process.exit(1);
-    }
-    console.log("Connected to database");
-
-    db.query("CREATE DATABASE IF NOT EXISTS wabians", (err) => {
-        if(err) {
-            console.log("Error Creating database: ", err);
-            process.exit(1);
-        }
-        console.log("Created database");
-    });
-});
-*/
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static("../public"));
