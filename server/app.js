@@ -23,7 +23,7 @@ app.get("/login", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../public", "login.html"));
 });
 
-//register new user
+//register a new user
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   const cryptedpass = await bcrypt.hash(password, 8);
